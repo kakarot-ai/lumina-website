@@ -976,11 +976,41 @@ filterButtons.forEach(button => {
 });
 
 
+
 /* ギャラリー拡大・スライド機能 */
 const galleryImages = Array.from(
-  console.log("ギャラリー画像の枚数:", galleryImages.length);
   document.querySelectorAll("#gallery .cards .card img")
 );
+
+// 画像の枚数を確認
+console.log("ギャラリー画像の枚数:", galleryImages.length);
+
+const modal = document.getElementById("galleryModal");
+const modalImage = document.getElementById("modalImage");
+const modalCount = document.getElementById("modalCount");
+
+let currentImage = 0;
+
+function showGalleryImage(index) {
+  if (galleryImages.length === 0) return;
+
+  currentImage =
+    (index + galleryImages.length) % galleryImages.length;
+
+  modalImage.src = galleryImages[currentImage].src;
+  modalImage.alt = galleryImages[currentImage].alt;
+  modalCount.textContent =
+    `${currentImage + 1} / ${galleryImages.length}`;
+
+  modal.classList.add("open");
+}
+
+galleryImages.forEach((img, index) => {
+  img.addEventListener("click", () => {
+    showGalleryImage(index);
+  });
+});
+
 
 const modal = document.getElementById("galleryModal");
 const modalImage = document.getElementById("modalImage");
