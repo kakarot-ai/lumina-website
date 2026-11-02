@@ -600,6 +600,84 @@ footer p {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* ギャラリー拡大表示 */
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(5, 6, 15, 0.96);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+
+.gallery-modal.open {
+  display: flex;
+}
+
+.gallery-modal img {
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+  box-shadow: 0 0 40px rgba(215,189,136,.15);
+}
+
+.modal-close,
+.modal-prev,
+.modal-next {
+  position: absolute;
+  background: transparent;
+  border: 1px solid rgba(215,189,136,.5);
+  color: #f0dfb5;
+  cursor: pointer;
+  padding: 12px 18px;
+  font-size: 20px;
+}
+
+.modal-close {
+  top: 20px;
+  right: 20px;
+}
+
+.modal-prev {
+  left: 20px;
+}
+
+.modal-next {
+  right: 20px;
+}
+
+.modal-count {
+  position: absolute;
+  bottom: 20px;
+  color: #d7bd88;
+  font: 12px sans-serif;
+  letter-spacing: .15em;
+}
+
+#gallery .card img {
+  cursor: zoom-in;
+}
+
+@media(max-width: 600px) {
+  .modal-prev {
+    left: 5px;
+  }
+
+  .modal-next {
+    right: 5px;
+  }
+
+  .gallery-modal img {
+    max-width: 100%;
+    max-height: 75vh;
+  }
+}
+
+  
 </style>
 </head>
 
@@ -866,7 +944,85 @@ filterButtons.forEach(button => {
     });
   });
 });
+
+
+/* ギャラリー拡大・スライド機能 */
+const galleryImages = Array.from(
+  document.querySelectorAll("#gallery .card img")
+);
+
+const modal = document.getElementById("galleryModal");
+const modalImage = document.getElementById("modalImage");
+const modalCount = document.getElementById("modalCount");
+
+let currentImage = 0;
+
+function showGalleryImage(index) {
+  currentImage = (index + galleryImages.length) % galleryImages.length;
+
+  modalImage.src = galleryImages[currentImage].src;
+  modalImage.alt = galleryImages[currentImage].alt;
+  modalCount.textContent =
+    `${currentImage + 1} / ${galleryImages.length}`;
+
+  modal.classList.add("open");
+}
+
+galleryImages.forEach((img, index) => {
+  img.addEventListener("click", () => {
+    showGalleryImage(index);
+  });
+});
+
+document.getElementById("modalClose").onclick = () => {
+  modal.classList.remove("open");
+};
+
+document.getElementById("modalPrev").onclick = () => {
+  showGalleryImage(currentImage - 1);
+};
+
+document.getElementById("modalNext").onclick = () => {
+  showGalleryImage(currentImage + 1);
+};
+
+// 背景をクリックして閉じる
+modal.addEventListener("click", event => {
+  if (event.target === modal) {
+    modal.classList.remove("open");
+  }
+});
+
+// キーボード操作
+document.addEventListener("keydown", event => {
+  if (!modal.classList.contains("open")) return;
+
+  if (event.key === "Escape") {
+    modal.classList.remove("open");
+  }
+
+  if (event.key === "ArrowRight") {
+    showGalleryImage(currentImage + 1);
+  }
+
+  if (event.key === "ArrowLeft") {
+    showGalleryImage(currentImage - 1);
+  }
+});
+  
+  
 </script>
 
+
+<!-- ギャラリー拡大画面 -->
+<div class="gallery-modal" id="galleryModal">
+  <button class="modal-close" id="modalClose">×</button>
+  <button class="modal-prev" id="modalPrev">❮</button>
+  <img id="modalImage" src="" alt="拡大画像">
+  <button class="modal-next" id="modalNext">❯</button>
+  <div class="modal-count" id="modalCount"></div>
+</div>
+
+  
 </body>
 </html>
