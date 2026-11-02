@@ -1011,19 +1011,6 @@ galleryImages.forEach((img, index) => {
   });
 });
 
-  modalImage.src = galleryImages[currentImage].src;
-  modalImage.alt = galleryImages[currentImage].alt;
-  modalCount.textContent =
-    `${currentImage + 1} / ${galleryImages.length}`;
-
-  modal.classList.add("open");
-}
-
-galleryImages.forEach((img, index) => {
-  img.addEventListener("click", () => {
-    showGalleryImage(index);
-  });
-});
 
 document.getElementById("modalClose").onclick = () => {
   modal.classList.remove("open");
