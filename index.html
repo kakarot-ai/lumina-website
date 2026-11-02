@@ -1011,13 +1011,6 @@ galleryImages.forEach((img, index) => {
   });
 });
 
-
-
-let currentImage = 0;
-
-function showGalleryImage(index) {
-  currentImage = (index + galleryImages.length) % galleryImages.length;
-
   modalImage.src = galleryImages[currentImage].src;
   modalImage.alt = galleryImages[currentImage].alt;
   modalCount.textContent =
