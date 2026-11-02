@@ -679,6 +679,36 @@ footer p {
 
   
 </style>
+
+<style>
+/* ギャラリー画像をクリックできるようにする */
+#gallery .card img {
+  cursor: zoom-in;
+}
+
+/* 拡大画面 */
+.gallery-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(5, 6, 15, 0.96);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+}
+
+.gallery-modal.open {
+  display: flex;
+}
+
+.gallery-modal img {
+  max-width: 90%;
+  max-height: 85vh;
+  object-fit: contain;
+}
+</style>
+  
 </head>
 
 <body>
