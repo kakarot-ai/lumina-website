@@ -174,3 +174,52 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 1000);
 
 });
+
+// LUMINA 幻想的な光のオーブ
+document.addEventListener("DOMContentLoaded", () => {
+  if (!document.querySelector(".lumina-floating-orbs")) {
+    const orbs = document.createElement("div");
+    orbs.className = "lumina-floating-orbs";
+    document.body.prepend(orbs);
+  }
+});
+
+
+// LUMINA MUSIC TOGGLE
+document.addEventListener("DOMContentLoaded", () => {
+  const music = document.getElementById("lumina-background-music");
+  const button = document.getElementById("lumina-music-toggle");
+
+  if (!music || !button) return;
+
+  const updateButton = () => {
+    const playing = !music.paused;
+    button.classList.toggle("is-playing", playing);
+    button.setAttribute("aria-label", playing ? "音楽を停止" : "音楽を再生");
+    button.setAttribute("title", playing ? "音楽を停止" : "音楽を再生");
+    button.querySelector(".music-icon").textContent = playing ? "♫" : "♪";
+  };
+
+  // ページを開いたら自動再生を試す
+  music.volume = 1.0;
+  music.play().then(updateButton).catch(() => {
+    // ブラウザが自動再生を制限した場合はボタン操作で再生
+    updateButton();
+  });
+
+  button.addEventListener("click", async () => {
+    if (music.paused) {
+      try {
+        await music.play();
+      } catch (error) {
+        console.log("音楽を再生できませんでした:", error);
+      }
+    } else {
+      music.pause();
+    }
+    updateButton();
+  });
+
+  music.addEventListener("play", updateButton);
+  music.addEventListener("pause", updateButton);
+});

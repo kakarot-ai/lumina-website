@@ -883,7 +883,7 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body::after {
+  .lumina-floating-orbs {
     animation: none;
   }
 }
@@ -985,3 +985,92 @@ body::before {
   to { opacity: 0.65; }
 }
 
+
+/* LUMINA ゆっくり漂う幻想的な光のオーブ */
+body {
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(75, 79, 145, 0.16), transparent 45%),
+    radial-gradient(ellipse at 85% 65%, rgba(145, 111, 75, 0.09), transparent 42%),
+    linear-gradient(145deg, #090b18 0%, #10152b 48%, #090b18 100%);
+  background-attachment: fixed;
+}
+
+.lumina-floating-orbs {
+  position: fixed;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(120, 130, 220, 0.28), transparent 25%),
+    radial-gradient(ellipse at 75% 65%, rgba(220, 185, 125, 0.24), transparent 27%),
+    radial-gradient(ellipse at 55% 15%, rgba(150, 120, 210, 0.20), transparent 23%);
+  filter: blur(22px);
+  animation: luminaFloatingOrbs 24s ease-in-out infinite alternate;
+}
+
+@keyframes luminaFloatingOrbs {
+  0% {
+    transform: translate3d(-2%, 1%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0) scale(1.06);
+  }
+  100% {
+    transform: translate3d(-1%, 2%, 0) scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    animation: none;
+  }
+}
+
+
+
+/* LUMINA Music Toggle */
+.lumina-music-toggle {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  z-index: 9999;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(220, 185, 110, 0.65);
+  border-radius: 50%;
+  background: rgba(12, 10, 25, 0.72);
+  color: #e8c982;
+  font-size: 25px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 18px rgba(220, 185, 110, 0.12);
+  transition: all 0.3s ease;
+}
+
+.lumina-music-toggle:hover {
+  background: rgba(220, 185, 110, 0.16);
+  box-shadow: 0 0 22px rgba(220, 185, 110, 0.35);
+  transform: scale(1.08);
+}
+
+.lumina-music-toggle.is-playing {
+  animation: luminaMusicGlow 3s ease-in-out infinite;
+}
+
+@keyframes luminaMusicGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(220, 185, 110, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(220, 185, 110, 0.42);
+  }
+}
+
+@media (max-width: 760px) {
+  .lumina-music-toggle {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+}
