@@ -1074,3 +1074,19 @@ body {
     height: 40px;
   }
 }
+
+/* MUSIC BUTTON VISIBILITY TEST */
+#lumina-music-toggle {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: fixed !important;
+  top: 24px !important;
+  right: 28px !important;
+  z-index: 999999 !important;
+  width: 50px !important;
+  height: 50px !important;
+  background: #171126 !important;
+  color: #e8c982 !important;
+  border: 2px solid #e8c982 !important;
+}
