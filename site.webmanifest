@@ -1,0 +1,16 @@
+{
+  "name": "LUMINA | AI",
+  "short_name": "LUMINA",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#171126",
+  "theme_color": "#171126",
+  "icons": [
+    {
+      "src": "assets/lumina-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
