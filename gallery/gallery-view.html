@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b18">
+  <title>ART VIEW | LUMINA</title>
+  <link rel="icon" type="image/png" href="../assets/lumina-icon.png">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .art-view {
+      min-height: calc(100vh - 180px);
+      padding: 130px 20px 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .art-view img {
+      max-width: min(100%, 1100px);
+      max-height: 75vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      margin: 30px auto;
+      box-shadow: 0 15px 60px rgba(0,0,0,.45);
+    }
+    .art-title {
+      color: var(--gold);
+      letter-spacing: .15em;
+      text-align: center;
+    }
+    .back-link {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 25px;
+      border: 1px solid var(--line);
+      color: var(--gold-light);
+      letter-spacing: .12em;
+    }
+    .back-link:hover {
+      background: rgba(215,189,136,.12);
+    }
+  </style>
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="glow"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="../index.html">
+      LUMINA
+      <small>AI CHARACTER & DIGITAL ART</small>
+    </a>
+    <nav>
+      <a href="../index.html#about">ABOUT</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="../index.html#characters">CHARACTER</a>
+      <a href="../index.html#collection">COLLECTION</a>
+    </nav>
+  </div>
+</header>
+
+<main class="art-view">
+  <div class="eyebrow">DIGITAL ART COLLECTION</div>
+  <h1 class="art-title" id="artTitle">LUMINA</h1>
+  <img id="artImage" src="" alt="LUMINA artwork">
+  <a class="back-link" href="gallery.html">← BACK TO GALLERY</a>
+</main>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const image = params.get("image");
+  const title = params.get("title") || "LUMINA";
+
+  const artImage = document.getElementById("artImage");
+  document.getElementById("artTitle").textContent = title;
+
+  if (image && image.startsWith("../assets/")) {
+    artImage.src = image;
+  } else {
+    artImage.alt = "画像が指定されていません";
+  }
+</script>
+
+<button id="lumina-music-toggle"
+        class="lumina-music-toggle"
+        aria-label="音楽を再生"
+        title="音楽を再生">
+  <span class="music-icon">♪</span>
+</button>
+
+<audio id="lumina-background-music" loop>
+  <source src="../assets/music/lumina-01.m4a" type="audio/mp4">
+</audio>
+<script src="../script.js" defer></script>
+</body>
+</html>
