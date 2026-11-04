@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b18">
+  <title>GALLERY | LUMINA</title>
+  <link rel="icon" type="image/png" href="../assets/lumina-icon.png">
+  <link rel="apple-touch-icon" href="../assets/lumina-icon.png">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="glow"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="../index.html">
+      LUMINA
+      <small>AI CHARACTER & DIGITAL ART</small>
+    </a>
+    <nav>
+      <a href="../index.html#about">ABOUT</a>
+      <a href="gallery.html">GALLERY</a>
+      <a href="../index.html#characters">CHARACTER</a>
+      <a href="../index.html#collection">COLLECTION</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="wrap" style="padding:150px 0 80px;">
+    <div class="section-head reveal">
+      <div class="eyebrow">Digital Art Gallery</div>
+      <h2>作品ギャラリー</h2>
+      <p>CHARACTER / FASHION / FANTASY</p>
+    </div>
+
+    <div class="gallery-controls reveal">
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="portrait">PORTRAIT</button>
+      <button class="filter-btn" data-filter="fantasy">FANTASY</button>
+      <button class="filter-btn" data-filter="story">STORY</button>
+    </div>
+
+    <div class="cards">
+      <a class="card reveal" data-category="portrait"
+         href="gallery-view.html?image=../assets/lumina-character.png&title=Portrait%20of%20Lumina">
+        <img src="../assets/lumina-character.png" alt="ルミナのポートレート">
+        <div class="card-body">
+          <div class="card-category">PORTRAIT / 001</div>
+          <h3>Portrait of Lumina</h3>
+          <p>銀髪のエルフ、ルミナの基本ポートレート。</p>
+        </div>
+      </a>
+
+      <article class="card reveal" data-category="fantasy">
+        <div class="placeholder">FANTASY COLLECTION</div>
+        <div class="card-body">
+          <div class="card-category">FANTASY / 002</div>
+          <h3>Fantasy Collection</h3>
+          <p>幻想的な衣装と世界観のコレクション。</p>
+        </div>
+      </article>
+
+      <article class="card reveal" data-category="story">
+        <div class="placeholder">LUMINA'S JOURNEY</div>
+        <div class="card-body">
+          <div class="card-category">STORY / 003</div>
+          <h3>Modern Days</h3>
+          <p>現代世界で過ごすルミナの日常。</p>
+        </div>
+      </article>
+    </div>
+
+    <div style="text-align:center; margin-top:60px;">
+      <a class="filter-btn" href="../index.html">BACK TO HOME</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footlogo">LUMINA</div>
+    <p>AI CHARACTER & DIGITAL ART</p>
+  </div>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>
